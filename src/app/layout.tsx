@@ -61,6 +61,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    "base:app_id": "6a551c01e3b311a8d678e08a",
+  },
 };
 
 export const viewport: Viewport = {
