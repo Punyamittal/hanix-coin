@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/sections/hero";
 import { AboutSection } from "@/components/sections/about";
 import { FeaturesSection } from "@/components/sections/features";
 import { TokenomicsSection } from "@/components/sections/tokenomics";
+import { DashboardSection } from "@/components/sections/dashboard";
 import { RoadmapSection } from "@/components/sections/roadmap";
 import { WhitepaperSection } from "@/components/sections/whitepaper";
 import { FaqSection } from "@/components/sections/faq";
@@ -31,6 +32,7 @@ export default function HomePage() {
         <AboutSection />
         <FeaturesSection />
         <TokenomicsSection />
+        <DashboardSection />
         <RoadmapSection />
         <WhitepaperSection />
         <FaqSection />

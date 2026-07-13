@@ -1,27 +1,31 @@
+import { HANIX_CONTRACT } from "@/lib/contracts";
+
 export const SITE = {
   name: "Hanix",
   ticker: "HNX",
   tagline: "A modern ERC-20 token built on Base.",
   description:
     "Hanix is a lightweight cryptocurrency created as a full-stack Web3 project showcasing smart contract development, blockchain deployment, and modern decentralized application architecture.",
-  url: "https://hanix.app",
+  url: "https://hanix.website",
 } as const;
 
 export const LINKS = {
-  contractAddress: "0x0000000000000000000000000000000000000000",
-  basescan: "https://basescan.org/token/0x0000000000000000000000000000000000000000",
+  contractAddress: HANIX_CONTRACT.address,
+  basescan: `https://sepolia.basescan.org/address/${HANIX_CONTRACT.address}`,
+  basescanToken: `https://sepolia.basescan.org/token/${HANIX_CONTRACT.address}`,
   github: "https://github.com/hanix-protocol/hanix",
   whitepaper: "/whitepaper.pdf",
   documentation: "https://docs.hanix.app",
   twitter: "https://x.com/hanixprotocol",
   discord: "https://discord.gg/hanix",
-  app: "#",
+  app: "#dashboard",
 } as const;
 
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Tokenomics", href: "#tokenomics" },
+  { label: "Dashboard", href: "#dashboard" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "Whitepaper", href: "#whitepaper" },
   { label: "FAQ", href: "#faq" },
@@ -96,14 +100,14 @@ export const FEATURES = [
 export const TOKENOMICS = [
   { label: "Token Name", value: "Hanix", icon: "BadgeCheck" },
   { label: "Ticker", value: "HNX", icon: "Hash" },
-  { label: "Network", value: "Base", icon: "Network" },
+  { label: "Network", value: "Base Sepolia", icon: "Network" },
   { label: "Standard", value: "ERC-20", icon: "FileCode" },
   { label: "Total Supply", value: "1,000,000 HNX", icon: "Layers" },
   { label: "Decimals", value: "18", icon: "CircleDot" },
   { label: "Mintable", value: "No", icon: "Lock" },
   { label: "Burnable", value: "Optional", icon: "Flame" },
   { label: "Tax", value: "0%", icon: "Percent" },
-  { label: "Owner", value: "Renounced (placeholder)", icon: "UserX" },
+  { label: "Owner", value: "On-chain (dashboard)", icon: "UserX" },
 ] as const;
 
 export const ROADMAP = [

@@ -24,38 +24,49 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hanix.app"),
+  metadataBase: new URL("https://hanix.website"),
   title: {
-    default: "Hanix (HNX) — ERC-20 Token on Base",
+    default: "Hanix (HNX) — ERC-20 Token on Base Sepolia",
     template: "%s | Hanix",
   },
   description:
-    "Hanix is a modern ERC-20 token on Base — a full-stack Web3 project showcasing smart contracts, blockchain deployment, and premium decentralized application design.",
+    "Hanix is a modern ERC-20 token on Base Sepolia — a full-stack Web3 dApp with live balances, transfers, and MetaMask integration.",
   keywords: [
     "Hanix",
     "HNX",
     "ERC-20",
     "Base",
+    "Base Sepolia",
     "cryptocurrency",
     "Web3",
     "smart contract",
     "blockchain",
+    "dApp",
   ],
   authors: [{ name: "Hanix" }],
   openGraph: {
-    title: "Hanix (HNX) — ERC-20 Token on Base",
+    title: "Hanix (HNX) — ERC-20 Token on Base Sepolia",
     description:
-      "A modern ERC-20 token built on Base. Lightweight, transparent, and engineered as a production-ready Web3 showcase.",
-    url: "https://hanix.app",
+      "Live Web3 dashboard for Hanix: connect wallet, read on-chain supply, transfer HNX, and explore the verified Base Sepolia contract.",
+    url: "https://hanix.website",
     siteName: "Hanix",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/coin.png",
+        width: 512,
+        height: 512,
+        alt: "Hanix token",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hanix (HNX) — ERC-20 Token on Base",
+    title: "Hanix (HNX) — ERC-20 Token on Base Sepolia",
     description:
-      "A modern ERC-20 token built on Base. Lightweight, transparent, and engineered as a production-ready Web3 showcase.",
+      "Live Web3 dashboard for Hanix on Base Sepolia with wallet connect, transfers, and verified contract links.",
+    images: ["/coin.png"],
   },
   robots: {
     index: true,

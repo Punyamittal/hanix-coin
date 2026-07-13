@@ -80,7 +80,7 @@ export function HeroSection() {
             className="mt-9 flex flex-wrap items-center justify-center gap-3"
           >
             <Button asChild size="lg">
-              <a href="#tokenomics">
+              <a href="#dashboard">
                 Explore Token
                 <ArrowRight className="h-4 w-4" />
               </a>
@@ -104,7 +104,7 @@ export function HeroSection() {
             transition={{ delay: 0.7, duration: 0.8 }}
             className="mt-10 w-full"
           >
-            <ContractAddress />
+            <ContractAddress compact />
           </motion.div>
         </motion.div>
       </div>
