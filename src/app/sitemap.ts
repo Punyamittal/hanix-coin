@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/constants";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://hanix.website";
   return [
     {
-      url: base,
+      url: SITE.url,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
