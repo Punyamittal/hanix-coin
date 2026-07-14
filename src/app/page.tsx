@@ -1,13 +1,29 @@
+import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero";
-import { AboutSection } from "@/components/sections/about";
-import { FeaturesSection } from "@/components/sections/features";
-import { TokenomicsSection } from "@/components/sections/tokenomics";
-import { DashboardSection } from "@/components/sections/dashboard";
-import { RoadmapSection } from "@/components/sections/roadmap";
-import { WhitepaperSection } from "@/components/sections/whitepaper";
-import { FaqSection } from "@/components/sections/faq";
+
+const AboutSection = dynamic(() =>
+  import("@/components/sections/about").then((m) => m.AboutSection),
+);
+const FeaturesSection = dynamic(() =>
+  import("@/components/sections/features").then((m) => m.FeaturesSection),
+);
+const TokenomicsSection = dynamic(() =>
+  import("@/components/sections/tokenomics").then((m) => m.TokenomicsSection),
+);
+const DashboardSection = dynamic(() =>
+  import("@/components/sections/dashboard").then((m) => m.DashboardSection),
+);
+const RoadmapSection = dynamic(() =>
+  import("@/components/sections/roadmap").then((m) => m.RoadmapSection),
+);
+const WhitepaperSection = dynamic(() =>
+  import("@/components/sections/whitepaper").then((m) => m.WhitepaperSection),
+);
+const FaqSection = dynamic(() =>
+  import("@/components/sections/faq").then((m) => m.FaqSection),
+);
 
 export default function HomePage() {
   return (
@@ -29,13 +45,15 @@ export default function HomePage() {
           <div className="absolute bottom-[5%] left-[30%] h-[30vh] w-[40vw] rounded-full bg-gold/[0.05] blur-[110px]" />
         </div>
         <HeroSection />
-        <AboutSection />
-        <FeaturesSection />
-        <TokenomicsSection />
-        <DashboardSection />
-        <RoadmapSection />
-        <WhitepaperSection />
-        <FaqSection />
+        <div className="cv-auto">
+          <AboutSection />
+          <FeaturesSection />
+          <TokenomicsSection />
+          <DashboardSection />
+          <RoadmapSection />
+          <WhitepaperSection />
+          <FaqSection />
+        </div>
       </main>
       <Footer />
     </>

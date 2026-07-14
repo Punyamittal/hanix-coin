@@ -353,6 +353,24 @@ body {
   -webkit-backdrop-filter: blur(10px);
 }
 
+@media (max-width: 768px) {
+  .glass,
+  .glass-panel,
+  .glass-pill,
+  .glass-nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .glass-panel {
+    background: rgba(18, 18, 18, 0.92);
+  }
+
+  .glass-nav {
+    background: rgba(5, 5, 5, 0.92);
+  }
+}
+
 .brutal-press {
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
@@ -369,5 +387,21 @@ body {
   .glass-panel,
   .glass-pill {
     background: rgba(18, 18, 18, 0.95);
+  }
+}
+
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 3200px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
-import { CursorSpotlight } from "@/components/effects/cursor-spotlight";
+import { Analytics } from "@/components/analytics/analytics";
+import { JsonLd } from "@/components/seo/json-ld";
+import { DeferredSpotlight } from "@/components/effects/deferred-spotlight";
 import "./globals.css";
 
 const archivoBlack = Archivo_Black({
@@ -21,6 +23,8 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
+  display: "swap",
+  preload: false,
 });
 
 const title = "Hanix (HNX) — Modern ERC-20 Token on Base";
@@ -52,6 +56,9 @@ export const metadata: Metadata = {
     icon: [{ url: "/coin.png", type: "image/png" }],
     apple: [{ url: "/coin.png", type: "image/png" }],
     shortcut: "/coin.png",
+  },
+  alternates: {
+    canonical: "https://hanix.website",
   },
   openGraph: {
     title,
@@ -87,11 +94,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="preload" href="/coin.png" as="image" type="image/png" />
+        <link rel="preconnect" href="https://sepolia.base.org" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://sepolia.base.org" />
+      </head>
       <body
         className={`${archivoBlack.variable} ${spaceGrotesk.variable} ${jetbrains.variable} font-sans antialiased`}
       >
+        <JsonLd />
+        <Analytics />
         <Providers>
-          <CursorSpotlight />
+          <DeferredSpotlight />
           {children}
         </Providers>
       </body>

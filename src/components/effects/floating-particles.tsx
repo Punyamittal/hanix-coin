@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface Particle {
   id: number;
@@ -13,12 +13,21 @@ interface Particle {
   opacity: number;
 }
 
-export function FloatingParticles({ count = 36 }: { count?: number }) {
+export function FloatingParticles({ count = 14 }: { count?: number }) {
+  const reduceMotion = useReducedMotion();
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
+    if (reduceMotion) {
+      setParticles([]);
+      return;
+    }
+
+    const mq = window.matchMedia("(max-width: 768px)");
+    const activeCount = mq.matches ? Math.min(count, 8) : count;
+
     setParticles(
-      Array.from({ length: count }, (_, i) => ({
+      Array.from({ length: activeCount }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
@@ -26,9 +35,9 @@ export function FloatingParticles({ count = 36 }: { count?: number }) {
         duration: Math.random() * 12 + 10,
         delay: Math.random() * 6,
         opacity: Math.random() * 0.45 + 0.15,
-      }))
+      })),
     );
-  }, [count]);
+  }, [count, reduceMotion]);
 
   if (!particles.length) return null;
 

@@ -44,7 +44,6 @@ export function ContractAddress({
             variant="outline"
             size="sm"
             onClick={copy}
-            aria-label={copied ? "Copied" : "Copy contract address"}
           >
             {copied ? (
               <Check className="h-3.5 w-3.5 text-gold" />
@@ -86,7 +85,6 @@ export function ContractAddress({
           variant="outline"
           size="sm"
           onClick={copy}
-          aria-label={copied ? "Copied" : "Copy contract address"}
         >
           {copied ? (
             <Check className="h-3.5 w-3.5 text-gold" />
@@ -100,7 +98,6 @@ export function ContractAddress({
             href={LINKS.basescan}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="View contract on BaseScan"
           >
             <ExternalLink className="h-3.5 w-3.5" />
             View on BaseScan

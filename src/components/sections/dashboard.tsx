@@ -12,6 +12,7 @@ import { AddToMetaMask } from "@/components/web3/add-to-metamask";
 import { NetworkStatus } from "@/components/web3/network-status";
 import { ExplorerLinks } from "@/components/web3/explorer-links";
 import { LiveBadges } from "@/components/web3/live-badges";
+import { WagmiIsland } from "@/components/providers/wagmi-island";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const SendHnx = dynamic(
@@ -37,41 +38,51 @@ export function DashboardSection() {
           description="Connect MetaMask on Base Sepolia to read live balances, inspect the verified contract, add HNX to your wallet, and send tokens."
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-6 flex flex-wrap items-center justify-center gap-3"
-        >
-          <NetworkStatus />
-          <ConnectWallet size="lg" showDetails />
-          <AddToMetaMask />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-6"
-        >
-          <LiveBadges />
-        </motion.div>
-
-        <div className="mb-4">
-          <ExplorerLinks />
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-3">
-          <div className="space-y-4 lg:col-span-2">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <TokenBalance />
-              <TotalSupply />
+        <WagmiIsland
+          fallback={
+            <div className="space-y-4">
+              <Skeleton className="mx-auto h-12 w-full max-w-xl" />
+              <Skeleton className="h-24 w-full" />
+              <Skeleton className="h-64 w-full" />
             </div>
-            <ContractAddress />
-            <SendHnx />
+          }
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-6 flex flex-wrap items-center justify-center gap-3"
+          >
+            <NetworkStatus />
+            <ConnectWallet size="lg" showDetails />
+            <AddToMetaMask />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-6"
+          >
+            <LiveBadges />
+          </motion.div>
+
+          <div className="mb-4">
+            <ExplorerLinks />
           </div>
-          <TokenInfo />
-        </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            <div className="space-y-4 lg:col-span-2">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <TokenBalance />
+                <TotalSupply />
+              </div>
+              <ContractAddress />
+              <SendHnx />
+            </div>
+            <TokenInfo />
+          </div>
+        </WagmiIsland>
       </div>
     </section>
   );

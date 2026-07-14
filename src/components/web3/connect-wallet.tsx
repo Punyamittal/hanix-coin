@@ -25,6 +25,7 @@ import {
   explorerAddressUrl,
   getChecksumAddress,
 } from "@/lib/web3";
+import { useWeb3Ready } from "@/components/providers/wagmi-island";
 
 function hasInjectedProvider() {
   return typeof window !== "undefined" && Boolean(window.ethereum);
@@ -62,15 +63,32 @@ async function waitForInjectedProvider(timeoutMs = 2500) {
   });
 }
 
-export function ConnectWallet({
-  variant = "secondary",
-  size = "default",
-  showDetails = false,
-}: {
+type ConnectWalletProps = {
   variant?: "default" | "secondary" | "outline" | "ghost";
   size?: "default" | "sm" | "lg";
   showDetails?: boolean;
-}) {
+};
+
+export function ConnectWallet(props: ConnectWalletProps) {
+  const ready = useWeb3Ready();
+
+  if (!ready) {
+    return (
+      <Button variant={props.variant ?? "secondary"} size={props.size} disabled>
+        <Wallet className="h-4 w-4" />
+        Connect Wallet
+      </Button>
+    );
+  }
+
+  return <ConnectWalletInner {...props} />;
+}
+
+function ConnectWalletInner({
+  variant = "secondary",
+  size = "default",
+  showDetails = false,
+}: ConnectWalletProps) {
   const { address, isConnected, chainId, status } = useAccount();
   const { connectAsync, connectors, isPending, error, reset } = useConnect();
   const { disconnect } = useDisconnect();
@@ -165,7 +183,6 @@ export function ConnectWallet({
               }
             )
           }
-          aria-label="Switch to Base Sepolia"
         >
           {isSwitching ? (
             <RefreshCw className="h-4 w-4 animate-spin" />
@@ -224,7 +241,6 @@ export function ConnectWallet({
             disconnect();
             toast.message("Wallet disconnected");
           }}
-          aria-label="Disconnect wallet"
         >
           <LogOut className="h-4 w-4" />
           Disconnect
@@ -233,6 +249,12 @@ export function ConnectWallet({
     );
   }
 
+  const connectLabel = isPending || connecting
+    ? "Connecting…"
+    : providerReady
+      ? "Connect Wallet"
+      : "Detecting wallet…";
+
   return (
     <div className="flex flex-col items-start gap-2">
       <Button
@@ -240,14 +262,9 @@ export function ConnectWallet({
         size={size}
         disabled={isPending || connecting || !connector}
         onClick={() => void onConnect()}
-        aria-label="Connect wallet"
       >
         <Wallet className="h-4 w-4" />
-        {isPending || connecting
-          ? "Connecting…"
-          : providerReady
-            ? "Connect Wallet"
-            : "Detecting wallet…"}
+        {connectLabel}
       </Button>
       {error && (
         <p className="max-w-xs text-xs text-red-400">{error.message}</p>
