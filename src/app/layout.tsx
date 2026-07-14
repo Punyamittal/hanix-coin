@@ -23,50 +23,48 @@ const jetbrains = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const title = "Hanix (HNX) — Modern ERC-20 Token on Base";
+const description =
+  "Hanix (HNX) is an ERC-20 cryptocurrency built on the Base blockchain as a Web3 learning and development project.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://hanix.website"),
   title: {
-    default: "Hanix (HNX) — ERC-20 Token on Base Sepolia",
+    default: title,
     template: "%s | Hanix",
   },
-  description:
-    "Hanix is a modern ERC-20 token on Base Sepolia — a full-stack Web3 dApp with live balances, transfers, and MetaMask integration.",
+  description,
   keywords: [
     "Hanix",
     "HNX",
     "ERC-20",
     "Base",
-    "Base Sepolia",
+    "Base blockchain",
     "cryptocurrency",
     "Web3",
     "smart contract",
     "blockchain",
     "dApp",
+    "token",
   ],
   authors: [{ name: "Hanix" }],
+  icons: {
+    icon: [{ url: "/coin.png", type: "image/png" }],
+    apple: [{ url: "/coin.png", type: "image/png" }],
+    shortcut: "/coin.png",
+  },
   openGraph: {
-    title: "Hanix (HNX) — ERC-20 Token on Base Sepolia",
-    description:
-      "Live Web3 dashboard for Hanix: connect wallet, read on-chain supply, transfer HNX, and explore the verified Base Sepolia contract.",
+    title,
+    description,
     url: "https://hanix.website",
     siteName: "Hanix",
     type: "website",
     locale: "en_US",
-    images: [
-      {
-        url: "/coin.png",
-        width: 512,
-        height: 512,
-        alt: "Hanix token",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hanix (HNX) — ERC-20 Token on Base Sepolia",
-    description:
-      "Live Web3 dashboard for Hanix on Base Sepolia with wallet connect, transfers, and verified contract links.",
-    images: ["/coin.png"],
+    title,
+    description,
   },
   robots: {
     index: true,

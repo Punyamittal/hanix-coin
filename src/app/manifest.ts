@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Hanix (HNX)",
     short_name: "Hanix",
     description:
-      "Hanix is a modern ERC-20 token on Base Sepolia — smart contracts, wallet integration, and a premium Web3 dashboard.",
+      "Hanix (HNX) is an ERC-20 cryptocurrency built on the Base blockchain as a Web3 learning and development project.",
     start_url: "/",
     display: "standalone",
     background_color: "#050505",
