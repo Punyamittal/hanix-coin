@@ -96,6 +96,16 @@ The landing page is accessed via the root route (`/`). Users interact with the a
 
 # hanix-coin
 
+## Application Pages
+
+Screenshots captured from the running application. Each page is listed with its function.
+
+#### Home
+
+Application page at `/`
+
+![Home](docs/readme-agent/pages/dashboard.png)
+
 ## Setup Guide
 
 ### Frontend Setup
@@ -140,19 +150,19 @@ graph TB
     end
 
     subgraph Charts["Metrics & Dashboard Charts"]
-        dashboard_kpis["Dashboard KPI cards"]
-        ops_snapshot["Live ops snapshot"]
-        risk_trajectory["Risk trajectory chart"]
-        attack_stats["Attack detection stats"]
-        eval_metrics["Evaluation metrics"]
-        benchmark_p99["Benchmark p99 chart"]
+        page_views["Page views chart"]
+        nav_sections["Navigation sections map"]
+        project_showcase["Project showcase grid"]
+        skills_timeline["Skills & experience timeline"]
+        contact_funnel["Contact conversion funnel"]
+        media_gallery["Media & assets gallery"]
     end
 
     user --> api_client
     api_client --> Core
     user -->|Web UI| dashboard_kpis
-    Core --> dashboard_kpis
-    dashboard_kpis --> user
+    Core --> page_views
+    page_views --> user
 ```
 
 ### Data Flow & Charts Pipeline
@@ -170,21 +180,19 @@ flowchart LR
     end
 
     subgraph Metrics["Metrics & Chart Feeds"]
-        dashboard_kpis["Dashboard KPI cards"]
-        ops_snapshot["Live ops snapshot"]
-        risk_trajectory["Risk trajectory chart"]
-        attack_stats["Attack detection stats"]
-        eval_metrics["Evaluation metrics"]
-        benchmark_p99["Benchmark p99 chart"]
-        confusion_matrix["Model confusion matrix"]
-        latency_hist["Latency histogram"]
+        page_views["Page views chart"]
+        nav_sections["Navigation sections map"]
+        project_showcase["Project showcase grid"]
+        skills_timeline["Skills & experience timeline"]
+        contact_funnel["Contact conversion funnel"]
+        media_gallery["Media & assets gallery"]
     end
 
     IN --> p0
     p2 --> OUT["Authorized Output"]
     OUT --> U
-    p2 --> dashboard_kpis
-    dashboard_kpis --> U
+    p2 --> page_views
+    page_views --> U
 ```
 
 ### Component & API Map
@@ -196,23 +204,11 @@ graph LR
     end
 ```
 
-### Dashboard Page Map
+### Application Page Map
 
 ```mermaid
 mindmap
-  root((MOVIO Dashboard))
-    Overview
-    Build
-    Evaluate
-    System
+  root((Hanix Coin))
+    Pages
+      Page.Tsx
 ```
-
-## Application Pages
-
-Screenshots captured from the running application. Each page is listed with its function.
-
-#### Home
-
-Application page at `/`
-
-![Home](docs/readme-agent/pages/dashboard.png)
