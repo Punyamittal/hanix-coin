@@ -96,16 +96,6 @@ The landing page is accessed via the root route (`/`). Users interact with the a
 
 # hanix-coin
 
-## Application Pages
-
-Screenshots captured from the running application. Each page is listed with its function.
-
-#### Home
-
-Application page at `/`
-
-![Home](docs/readme-agent/pages/dashboard.png)
-
 ## Setup Guide
 
 ### Frontend Setup
@@ -138,69 +128,80 @@ High-level system design, data flows, API map, and workflow pipelines derived fr
 ```mermaid
 graph TB
     subgraph Client["Client Layer"]
-        user["User / Operator"]
-        api_client["API / CLI Client"]
+        user["User"]
+        browser["Browser / Client"]
     end
 
-    subgraph Core["src/ — Application Core"]
+    subgraph Core["Hanix Coin — Web App"]
+        page_tsx["Page.Tsx<br/>/page.tsx"]
+        analytics["analytics<br/>Component"]
+        google_analytics["google-analytics<br/>Component"]
+        microsoft_clarity["microsoft-clarity<br/>Component"]
+        logo["logo<br/>Component"]
+        aurora_background["aurora-background<br/>Component"]
+        cursor_spotlight["cursor-spotlight<br/>Component"]
+        deferred_spotlight["deferred-spotlight<br/>Component"]
+        floating_particles["floating-particles<br/>Component"]
+        grid_pattern["grid-pattern<br/>Component"]
+        mouse_parallax["mouse-parallax<br/>Component"]
+        footer["footer<br/>Component"]
     end
 
     subgraph Data["Data & Artifacts"]
-        datasets["Datasets · JSON · CSV"]
+        assets["Static assets · public/"]
+        config["Config · env / JSON"]
     end
 
-    subgraph Charts["Metrics & Dashboard Charts"]
-        page_views["Page views chart"]
-        nav_sections["Navigation sections map"]
-        project_showcase["Project showcase grid"]
-        skills_timeline["Skills & experience timeline"]
-        contact_funnel["Contact conversion funnel"]
-        media_gallery["Media & assets gallery"]
+    subgraph Charts["hanix-coin — Metrics & Views"]
+        page_tsx["Page.Tsx page"]
+        docs["docs/ module"]
+        hanix_token["hanix-token/ module"]
     end
 
-    user --> api_client
-    api_client --> Core
-    user -->|Web UI| dashboard_kpis
-    Core --> page_views
-    page_views --> user
+    user --> browser
+    browser --> page_tsx
+    page_tsx --> user
 ```
 
 ### Data Flow & Charts Pipeline
 
 ```mermaid
 flowchart LR
-    U["User / Event"] --> IN["Untrusted Input"]
+    U["User / Event"] --> IN["User Action"]
 
-    subgraph Pipeline["Processing Pipeline"]
-        p0["Input"]
-        p1["Processing"]
-        p2["Output"]
+    subgraph Pipeline["hanix-coin App Flow"]
+        p0["Page.Tsx"]
+        p1["Analytics"]
+        p2["Google Analytics"]
+        p3["Microsoft Clarity"]
+        p4["Logo"]
+        p5["Aurora Background"]
         p0 --> p1
         p1 --> p2
+        p2 --> p3
+        p3 --> p4
+        p4 --> p5
     end
 
-    subgraph Metrics["Metrics & Chart Feeds"]
-        page_views["Page views chart"]
-        nav_sections["Navigation sections map"]
-        project_showcase["Project showcase grid"]
-        skills_timeline["Skills & experience timeline"]
-        contact_funnel["Contact conversion funnel"]
-        media_gallery["Media & assets gallery"]
+    subgraph Metrics["hanix-coin — Views & Metrics"]
+        page_tsx["Page.Tsx page"]
+        docs["docs/ module"]
+        hanix_token["hanix-token/ module"]
     end
 
     IN --> p0
-    p2 --> OUT["Authorized Output"]
+    p5 --> OUT["UI Response"]
     OUT --> U
-    p2 --> page_views
-    page_views --> U
+    p5 --> page_tsx
+    page_tsx --> U
 ```
 
 ### Component & API Map
 
 ```mermaid
 graph LR
-    subgraph App["src Components"]
-        main["main<br/>Main"]
+    subgraph App["hanix-coin Components"]
+        page_tsx["Page.Tsx<br/>/page.tsx"]
     end
 ```
 
